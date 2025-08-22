@@ -1,0 +1,91 @@
+{
+  "name": "@bdcode/hono-zod-oas31",
+  "version": "1.0.0",
+  "description": "A wrapper class of Hono which supports OpenAPI.",
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "./package.json",
+    "./CHANGELOG.md",
+    "./README.md",
+    "./LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup ./src/index.ts",
+    "prepack": "pnpm build",
+    "publint": "attw --pack && publint",
+    "typecheck": "tsc -b tsconfig.json",
+    "test": "vitest",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write .",
+    "version:jsr": "pnpm version:set $npm_package_version",
+    "debug": "tsx ./src/examples.ts > debug.json",
+    "postinstall": "pnpm husky"
+  },
+  "keywords": [
+    "hono",
+    "zod",
+    "openapi",
+    "oas3"
+  ],
+  "author": "Mr Meaow <0306mahabub@gmail.com>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.10.0",
+  "peerDependencies": {
+    "hono": ">=4.3.6",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.6",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@hono/eslint-config": "^2.0.3",
+    "@types/node": "^24.3.0",
+    "@vitest/coverage-istanbul": "^3.2.4",
+    "eslint": "^9.33.0",
+    "hono": "^4.9.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "publint": "^0.3.12",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
+    "yaml": "^2.8.1",
+    "zod": "^4.0.17"
+  },
+  "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^8.1.0",
+    "@hono/zod-validator": "^0.7.2",
+    "openapi3-ts": "^4.5.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codecontinent/hono-zod-oas31"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  }
+}

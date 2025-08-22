@@ -1,0 +1,17 @@
+{
+  "name": "@bdcode/hono-zod-openapi",
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "imports": {
+    "@hono/zod-validator": "npm:@hono/zod-validator@^0.4.1",
+    "hono": "npm:hono@^4.6.3",
+    "zod": "npm:zod@^3.21.4"
+  },
+  "publish": {
+    "include": ["deno.json", "README.md", "src/**/*.ts", "./CHANGELOG.md"],
+    "exclude": ["src/**/*.test.ts"]
+  }
+}
