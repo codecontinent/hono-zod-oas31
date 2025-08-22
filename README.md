@@ -2,7 +2,19 @@
 
 A TypeScript-first OpenAPI wrapper for [Hono](https://hono.dev) with [Zod](https://zod.dev) schema validation and automatic OpenAPI documentation generation.
 
-[![Release](https://github.com/codecontinent/hono-zod-oas31/actions/workflows/release.yml/badge.svg)](https://github.com/codecontinent/hono-zod-oas31/actions/workflows/release.yml)
+<p>
+  <a href="https://www.npmjs.com/package/@bdcode/hono-zod-oas31">
+    <img src="https://img.shields.io/npm/v/@bdcode/hono-zod-oas31" alt="npm version" />
+  </a>
+  <a href="https://github.com/codecontinent/hono-zod-oas31/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/codecontinent/hono-zod-oas31" alt="GitHub license" />
+  </a>
+  <a href="https://github.com/codecontinent/hono-zod-oas31/actions/workflows/release.yml">
+    <img src="https://github.com/codecontinent/hono-zod-oas31/actions/workflows/release.yml/badge.svg" alt="Release" />
+  </a>
+</p>
+
+</p>
 
 ## Features
 
