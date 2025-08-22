@@ -2,6 +2,8 @@
 
 A TypeScript-first OpenAPI wrapper for [Hono](https://hono.dev) with [Zod](https://zod.dev) schema validation and automatic OpenAPI documentation generation.
 
+[![Release](https://github.com/codecontinent/hono-zod-oas31/actions/workflows/release.yml/badge.svg)](https://github.com/codecontinent/hono-zod-oas31/actions/workflows/release.yml)
+
 ## Features
 
 - 🔥 **Built for Hono** - Seamless integration with Hono framework

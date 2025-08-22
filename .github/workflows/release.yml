@@ -15,8 +15,9 @@ jobs:
 
     permissions:
       contents: write # Used by changesets to create releases
-      id-token: write # The OIDC ID token is used for authentication with JSR
-      pull-requests: write # Used by changesets to create a pull request for the release
+      id-token: write # For JSR (if used)
+      pull-requests: write # Used by changesets to create PRs
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v5
@@ -33,7 +34,6 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
-          node-version-file: .tool-versions
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -57,8 +57,9 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm version
-          publish: pnpm publish --access public --no-git-checks
+          # Use Changesets’ defaults (don’t override)
+          version: pnpm changeset version
+          publish: pnpm changeset publish
         env:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
