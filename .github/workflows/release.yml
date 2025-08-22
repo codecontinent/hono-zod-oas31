@@ -53,11 +53,17 @@ jobs:
       - name: Build
         run: pnpm build
 
+      # ✅ ensures pnpm sees the Automation token for scoped packages
+      - name: Setup npm auth
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          # Use Changesets’ defaults (don’t override)
           version: pnpm changeset version
           publish: pnpm changeset publish
         env:
