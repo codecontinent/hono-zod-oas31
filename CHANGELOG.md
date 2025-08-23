@@ -1,4 +1,10 @@
-# 1.0.0 (2025-08-23)
+# 1.0.1 (2025-08-22)
+
+### Bug Fixes
+
+- **release ci bot**: fix(release): [#1](https://github.com/codecontinent/hono-zod-oas31/issues/1) added semantic-release by dropping changesets ([e249422](https://github.com/codecontinent/hono-zod-oas31/commit/e2494220735e0b9b3447f6bfefa450ae9e0c8a5f))
+
+# 1.0.0 (2025-08-22)
 
 ### Bug Fixes
 

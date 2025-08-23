@@ -5,7 +5,7 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "nodeModulesDir": "manual",
+  "nodeModulesDir": "auto",
   "imports": {
     "@hono/zod-validator": "npm:@hono/zod-validator@^0.4.1",
     "hono": "npm:hono@^4.3.6",
