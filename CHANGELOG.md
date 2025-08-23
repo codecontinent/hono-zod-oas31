@@ -1,3 +1,9 @@
+## [1.1.4](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.3...v1.1.4) (2025-08-23)
+
+### Bug Fixes
+
+- **jsr-ci:** fixing ci for jsr-release ([cc50978](https://github.com/codecontinent/hono-zod-oas31/commit/cc5097884304f0fbd7dfac200f29e81e526b8f62))
+
 ## [1.1.3](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.2...v1.1.3) (2025-08-23)
 
 ### Bug Fixes
