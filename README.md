@@ -227,8 +227,6 @@ const webhook = createWebhook({
     },
   },
 })
-
-app.webhook(webhook)
 ```
 
 ## Validation
@@ -408,7 +406,9 @@ const paymentWebhook = createWebhook({
   },
 })
 
-app.webhook(paymentWebhook)
+app.webhook(paymentWebhook, async (c) => {
+  return c.json({ status: 'ok' }, 200)
+})
 ```
 
 ## Zod Extensions
@@ -551,6 +551,9 @@ app.doc('/doc', {
 
 export default app
 ```
+
+> [!NOTE]
+> We recommend to use `createRoute()` with `app.openapi()` way and `createWebhook()` for `app.webhook()` way.
 
 ## Migration from @hono/zod-openapi
 
