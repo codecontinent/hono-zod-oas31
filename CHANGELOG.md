@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.0...v1.1.1) (2025-08-23)
+
+### Bug Fixes
+
+- v1.1 stable release ([0c2c40c](https://github.com/codecontinent/hono-zod-oas31/commit/0c2c40c120fa5cff256d734d401246b3c91ab413))
+- v1.1.1 stable release ([386a5c5](https://github.com/codecontinent/hono-zod-oas31/commit/386a5c5ae0921d6ef6ebe6c941bef158d337dd70))
+- v1.1.1 stable release ([72ec2f0](https://github.com/codecontinent/hono-zod-oas31/commit/72ec2f0b0940642920b0a2878fb0ae95970b04de))
+
 # [1.1.0](https://github.com/codecontinent/hono-zod-oas31/compare/v1.0.1...v1.1.0) (2025-08-23)
 
 ### Bug Fixes
