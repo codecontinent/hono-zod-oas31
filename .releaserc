@@ -10,13 +10,20 @@
         "pkgRoot": "."
       }
     ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "node ./update-deno.js ${nextRelease.version}"
+      }
+    ],
     "@semantic-release/github",
     [
       "@semantic-release/git",
       {
         "assets": [
           "CHANGELOG.md",
-          "package.json"
+          "package.json",
+          "deno.json"
         ],
         "message": "chore(release): ${nextRelease.version}"
       }

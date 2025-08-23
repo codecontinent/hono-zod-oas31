@@ -10,6 +10,7 @@
     "node_modules",
     "vitest.config.ts",
     "tsup.config.ts",
+    "./update-deno.js",
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
     "src/**/*.test-d.ts"

@@ -12,11 +12,19 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
+    "allowJs": true,
     "strict": true,
     "skipLibCheck": true,
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "types": []
   },
-  "include": ["eslint.config.mjs", "src", "tsup.config.ts", "vitest.config.ts", "package.json"]
+  "include": [
+    "eslint.config.mjs",
+    "src",
+    "tsup.config.ts",
+    "vitest.config.ts",
+    "package.json",
+    "update-deno.js"
+  ]
 }
