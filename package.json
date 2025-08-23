@@ -1,6 +1,6 @@
 {
   "name": "@bdcode/hono-zod-oas31",
-  "version": "0.0.0-development",
+  "version": "1.0.2",
   "description": "A wrapper class of Hono which supports OpenAPI.",
   "type": "module",
   "module": "dist/index.js",
