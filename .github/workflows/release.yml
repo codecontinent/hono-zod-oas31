@@ -60,5 +60,7 @@ jobs:
         run: pnpm exec semantic-release
 
       - name: Publish package to JSR
-        run: npx jsr publish # Ignores .npmrc, uses OIDC for JSR
-
+        run: |
+          mv .npmrc .npmrc.bak  # Temporarily rename
+          npx jsr publish
+          mv .npmrc.bak .npmrc  # Restore
