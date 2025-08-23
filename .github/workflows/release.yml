@@ -60,4 +60,4 @@ jobs:
         run: pnpm exec semantic-release
 
       - name: Publish package to JSR
-        run: npx jsr publish
+        run: npx jsr publish --registry https://registry.npmjs.org/ --scope @bdcode
