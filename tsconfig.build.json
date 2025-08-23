@@ -4,7 +4,8 @@
     "isolatedDeclarations": true,
     "outDir": "dist",
     "rootDir": "src",
-    "tsBuildInfoFile": "/dist/tsconfig.build.tsbuildinfo"
+    "tsBuildInfoFile": "/dist/tsconfig.build.tsbuildinfo",
+    "allowJs": false
   },
   "exclude": [
     "node_modules",

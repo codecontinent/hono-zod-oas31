@@ -15,6 +15,7 @@ jobs:
 
     permissions:
       contents: write # Needed for creating releases
+      id-token: write # required for OIDC auth
       issues: write # If semantic-release manages release notes/issues
       pull-requests: write # If it comments on PRs
 
@@ -57,3 +58,6 @@ jobs:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm exec semantic-release
+
+      - name: Publish package to JSR
+        run: npx jsr publish
