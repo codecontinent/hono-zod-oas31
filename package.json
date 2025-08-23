@@ -1,6 +1,6 @@
 {
   "name": "@bdcode/hono-zod-oas31",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A wrapper class of Hono which supports OpenAPI.",
   "type": "module",
   "module": "dist/index.js",
@@ -81,7 +81,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codecontinent/hono-zod-oas31"
+    "url": "git+https://github.com/codecontinent/hono-zod-oas31.git"
   },
   "engines": {
     "node": ">=16.0.0"
