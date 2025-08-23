@@ -56,8 +56,9 @@ jobs:
       - name: 🚀 Run semantic-release
         env:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Uses .npmrc for npm
         run: pnpm exec semantic-release
 
       - name: Publish package to JSR
-        run: npx jsr publish --registry https://registry.npmjs.org/ --scope @bdcode
+        run: npx jsr publish # Ignores .npmrc, uses OIDC for JSR
+
