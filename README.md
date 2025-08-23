@@ -22,7 +22,7 @@ A TypeScript-first OpenAPI wrapper for [Hono](https://hono.dev) with [Zod](https
 - 🛡️ **Type-safe** - Full TypeScript support with intelligent type inference
 - 📖 **Auto-generated docs** - Automatic OpenAPI 3.0/3.1 documentation
 - ⚡ **Zod validation** - Request/response validation with Zod schemas
-- 🔗 **Webhook support** - OpenAPI 3.1+ webhook documentation
+- 🔗 **Webhook support** - OAS v3.1+ webhooks generation support
 - 🎯 **Zero-config** - Works out of the box with minimal setup
 - 🚀 **Developer experience** - Excellent IDE support and error messages
 
