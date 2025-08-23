@@ -23,7 +23,8 @@
     "format": "prettier --write .",
     "version:jsr": "pnpm version:set $npm_package_version",
     "debug": "tsx ./src/examples.ts > debug.json",
-    "postinstall": "pnpm husky"
+    "postinstall": "pnpm husky",
+    "release": "semantic-release"
   },
   "keywords": [
     "hono",
@@ -31,7 +32,11 @@
     "openapi",
     "oas3"
   ],
-  "author": "Mr Meaow <0306mahabub@gmail.com>",
+  "author": {
+    "name": "CodeContinent",
+    "email": "codecontinent@gmail.com",
+    "url": "https://github.com/codecontinent"
+  },
   "license": "MIT",
   "packageManager": "pnpm@10.10.0",
   "peerDependencies": {
@@ -40,11 +45,15 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.6",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@hono/eslint-config": "^2.0.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.3",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.0.3",
     "@types/node": "^24.3.0",
     "@vitest/coverage-istanbul": "^3.2.4",
     "eslint": "^9.33.0",
@@ -53,6 +62,7 @@
     "lint-staged": "^16.1.5",
     "prettier": "^3.6.2",
     "publint": "^0.3.12",
+    "semantic-release": "^24.2.7",
     "tsup": "^8.5.0",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
