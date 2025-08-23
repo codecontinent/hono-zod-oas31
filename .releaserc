@@ -13,7 +13,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "node ./update-deno.js ${nextRelease.version}"
+        "prepareCmd": "node update-deno.js ${nextRelease.version}"
       }
     ],
     "@semantic-release/github",
