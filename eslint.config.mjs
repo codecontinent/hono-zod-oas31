@@ -9,6 +9,7 @@ export default defineConfig(
     '**/dist',
     '**/node_modules',
     'eslint.config.mjs',
+    'commitlint.config.mjs',
   ]),
   {
     extends: baseConfig,
@@ -16,7 +17,6 @@ export default defineConfig(
     languageOptions: {
       parserOptions: {
         projectService: true,
-        // tsconfigPath: './tsconfig.json',
         tsconfigRootDir: import.meta.dirname,
       },
     },

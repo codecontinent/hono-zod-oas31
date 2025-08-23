@@ -61,6 +61,6 @@ jobs:
 
       - name: Publish package to JSR
         run: |
-          mv .npmrc .npmrc.bak  # Temporarily rename
-          npx jsr publish
-          mv .npmrc.bak .npmrc  # Restore
+          mv .npmrc .npmrc.bak  
+          npx jsr publish --allow-dirty
+          mv .npmrc.bak .npmrc

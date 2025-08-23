@@ -2147,7 +2147,9 @@ describe('Webhook', () => {
   const app = new OpenAPIHono()
 
   it('Should register webhook in OpenAPI document', () => {
-    app.webhook(webhook)
+    app.webhook(webhook, async (c) => {
+      return c.text('ok')
+    })
 
     const doc = app.getOpenAPI31Document({
       openapi: '3.1.0',
@@ -2228,7 +2230,9 @@ describe('Webhook', () => {
     })
 
     const testApp = new OpenAPIHono()
-    testApp.webhook(hiddenWebhook)
+    testApp.webhook(hiddenWebhook, async (c) => {
+      return c.text('ok')
+    })
 
     const doc = testApp.getOpenAPI31Document({
       openapi: '3.1.0',
@@ -2244,7 +2248,9 @@ describe('Webhook', () => {
 
   it('Should return the app instance for method chaining', () => {
     const chainedApp = new OpenAPIHono()
-    const result = chainedApp.webhook(webhook)
+    const result = chainedApp.webhook(webhook, async (c) => {
+      return c.text('ok')
+    })
 
     expect(result).toBe(chainedApp)
     expect(result).toBeInstanceOf(OpenAPIHono)

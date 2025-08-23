@@ -18,11 +18,11 @@ A TypeScript-first OpenAPI wrapper for [Hono](https://hono.dev) with [Zod](https
 
 ## Features
 
-- 🔥 **Built for Hono** - Seamless integration with Hono framework
+- 🔥 **Built for Hono** - Seamless integration with Hono.js framework
 - 🛡️ **Type-safe** - Full TypeScript support with intelligent type inference
-- 📖 **Auto-generated docs** - Automatic OpenAPI 3.0/3.1 documentation
-- ⚡ **Zod validation** - Request/response validation with Zod schemas
-- 🔗 **Webhook support** - OAS v3.1+ webhooks generation support
+- 📖 **Auto-generated docs** - Automatic OpenAPI 3.0/3.1+ documentation
+- ⚡ **Zod validation** - Request/response automated validation with Zod schemas
+- 🔗 **Webhook support** - OAS v3.1+ webhooks generation support added
 - 🎯 **Zero-config** - Works out of the box with minimal setup
 - 🚀 **Developer experience** - Excellent IDE support and error messages
 
@@ -154,11 +154,11 @@ Generate OpenAPI 3.0 documentation endpoint.
 
 ##### `doc31(path, config, generatorConfig?)`
 
-Generate OpenAPI 3.1 documentation endpoint (supports webhooks).
+Generate OpenAPI 3.1 documentation endpoint (supports webhooks very well).
 
-##### `webhook(webhookConfig)`
+##### `webhook(webhookConfig, handler?)`
 
-Register webhook documentation (OpenAPI 3.1 only).
+Register webhook documentation (OpenAPI 3.1 recommended).
 
 ### createRoute()
 
@@ -227,8 +227,6 @@ const webhook = createWebhook({
     },
   },
 })
-
-app.webhook(webhook)
 ```
 
 ## Validation
@@ -408,7 +406,9 @@ const paymentWebhook = createWebhook({
   },
 })
 
-app.webhook(paymentWebhook)
+app.webhook(paymentWebhook, async (c) => {
+  return c.json({ status: 'ok' }, 200)
+})
 ```
 
 ## Zod Extensions
@@ -552,11 +552,14 @@ app.doc('/doc', {
 export default app
 ```
 
+> [!NOTE]
+> We recommend to use `createRoute()` with `app.openapi()` way and `createWebhook()` for `app.webhook()` way.
+
 ## Migration from @hono/zod-openapi
 
 If you're migrating from `@hono/zod-openapi`, this package provides a similar API (as it's like a mannual fork from it) with additional features:
 
-1. **Webhook support** for OpenAPI 3.1+ Specs
+1. **Webhook support** for OpenAPI 3.1+ Specs (recommended)
 2. **Enhanced TypeScript** support
 3. **Better middleware integration**
 4. **Improved validation hooks**
