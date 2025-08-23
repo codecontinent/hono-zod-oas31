@@ -1,3 +1,9 @@
+## [1.1.3](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.2...v1.1.3) (2025-08-23)
+
+### Bug Fixes
+
+- v1.1.1 with jsr publish automation ([4d41977](https://github.com/codecontinent/hono-zod-oas31/commit/4d41977004555dd264ff1f99e4589dbc35aeabe3))
+
 ## [1.1.2](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.1...v1.1.2) (2025-08-23)
 
 ### Bug Fixes
