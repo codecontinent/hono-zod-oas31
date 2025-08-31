@@ -1,3 +1,9 @@
+# [1.2.0](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.4...v1.2.0) (2025-08-31)
+
+### Features
+
+- **webhook:** [#2](https://github.com/codecontinent/hono-zod-oas31/issues/2) added webhook register enhancment ([80186a9](https://github.com/codecontinent/hono-zod-oas31/commit/80186a94771d539300af596516d7e11e78f6eeb4))
+
 # [1.2.0](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.5...v1.2.0) (2025-08-31)
 
 ### Features
