@@ -477,9 +477,7 @@ export class OpenAPIHono<
     S & ToSchema<R['method'], MergePath<BasePath, P>, I, RouteConfigToTypedResponse<R>>,
     BasePath
   > => {
-    if (!hide) {
-      this.openAPIRegistry.registerPath(route)
-    }
+    if (!hide) this.openAPIRegistry.registerPath(route)
 
     const validators: MiddlewareHandler[] = []
 
@@ -726,8 +724,13 @@ export class OpenAPIHono<
     if (!webhook.hide) this.openAPIRegistry.registerWebhook(webhook as RouteConfigBase)
 
     const { middleware: routeMiddleware, hide, ...route } = webhook
-    // mapping the route handler but not as a regular route
-    this.openAPIRegistry.registerPath({ ...route, hide: true })
+
+    /**
+     * Didn't register the path in OpenAPI as paths, coz it will
+     * be hidden from the documentation as paths but still accessible
+     * through the API. As we already defined it as a webhook, it will
+     * be treated as such in the API.
+     */
 
     const validators: MiddlewareHandler[] = []
 
