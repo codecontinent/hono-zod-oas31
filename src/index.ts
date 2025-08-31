@@ -634,7 +634,7 @@ export class OpenAPIHono<
    * @param webhook - The webhook definition created with `createWebhook()`
    * @note Webhooks are only supported in OpenAPI 3.1+. Use `getOpenAPI31Document()` to generate the documentation.
    * @example
-   * const webhook = createWebhook({
+   * const webhook_route = createWebhook({
    *   method: 'post',
    *   path: '/webhooks/payment',
    *   request: {
@@ -653,7 +653,20 @@ export class OpenAPIHono<
    *   },
    * })
    *
-   * app.webhook(webhook, handler)
+   * app.webhook(webhook_route,
+   * async (c) => {
+   *  return c.json({ status: 'ok' }, 200)
+   * }, (result, c) => {
+   *    if (!result.success) {
+   *      return c.json(
+   *        {
+   *          code: 400,
+   *          message: 'Custom Message',
+   *        },
+   *        400
+   *      )
+   *    }
+   *  })
    */
 
   webhook = <
