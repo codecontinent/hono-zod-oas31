@@ -25,6 +25,7 @@
     "tsup.config.ts",
     "vitest.config.ts",
     "package.json",
-    "update-deno.js"
+    "update-deno.js",
+    "commitlint.config.mjs"
   ]
 }

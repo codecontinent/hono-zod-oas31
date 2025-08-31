@@ -9,6 +9,7 @@ export default defineConfig(
     '**/dist',
     '**/node_modules',
     'eslint.config.mjs',
+    'commitlint.config.mjs',
   ]),
   {
     extends: baseConfig,

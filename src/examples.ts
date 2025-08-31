@@ -113,13 +113,10 @@ const paymentWebhook = createWebhook({
 // Create the app and register the webhook
 const app: OpenAPIHono = new OpenAPIHono()
 
-// Register the normal route
-app.openapi(healthCheckRoute, async (c) => {
+// Register the webhook (this only adds it to OpenAPI documentation)
+app.webhook(paymentWebhook, async (c) => {
   return c.json({ status: 'ok' })
 })
-
-// Register the webhook (this only adds it to OpenAPI documentation)
-app.webhook(paymentWebhook)
 
 // You can also register multiple webhooks
 const refundWebhook = createWebhook({
@@ -147,7 +144,9 @@ const refundWebhook = createWebhook({
   },
 })
 
-app.webhook(refundWebhook)
+app.webhook(refundWebhook, async (c) => {
+  return c.json({ status: 'ok' })
+})
 
 // Generate OpenAPI 3.1 documentation (webhooks are only supported in 3.1+)
 app.doc31('/doc', {

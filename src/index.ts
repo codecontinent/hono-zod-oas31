@@ -14,7 +14,6 @@ import {
   getOpenApiMetadata,
 } from '@asteasolutions/zod-to-openapi'
 import { zValidator } from '@hono/zod-validator'
-import { Hono } from 'hono'
 import type {
   Context,
   Env,
@@ -26,6 +25,7 @@ import type {
   TypedResponse,
   ValidationTargets,
 } from 'hono'
+import { Hono } from 'hono'
 import type { MergePath, MergeSchemaPath } from 'hono/types'
 import type {
   ClientErrorStatusCode,
@@ -39,8 +39,8 @@ import type { JSONParsed, JSONValue, RemoveBlankRecord, SimplifyDeepArray } from
 import { mergePath } from 'hono/utils/url'
 import type { OpenAPIObject } from 'openapi3-ts/oas30'
 import type { OpenAPIObject as OpenAPIV31bject } from 'openapi3-ts/oas31'
-import { ZodType, z } from 'zod'
 import type { ZodError } from 'zod'
+import { ZodType, z } from 'zod'
 
 type MaybePromise<T> = Promise<T> | T
 
@@ -653,12 +653,154 @@ export class OpenAPIHono<
    *   },
    * })
    *
-   * app.webhook(webhook)
+   * app.webhook(webhook, handler)
    */
-  webhook = (webhook: WebhookConfig): OpenAPIHono<E, S, BasePath> => {
-    if (!webhook.hide) {
-      this.openAPIRegistry.registerWebhook(webhook as RouteConfigBase)
+
+  webhook = <
+    R extends RouteConfig,
+    I extends Input = InputTypeParam<R> &
+      InputTypeQuery<R> &
+      InputTypeHeader<R> &
+      InputTypeCookie<R> &
+      InputTypeForm<R> &
+      InputTypeJson<R>,
+    P extends string = ConvertPathType<R['path']>,
+  >(
+    webhook: R & WebhookConfig,
+    handler: Handler<
+      // use the env from the middleware if it's defined
+      R['middleware'] extends MiddlewareHandler[] | MiddlewareHandler
+        ? RouteMiddlewareParams<R>['env'] & E
+        : E,
+      P,
+      I,
+      // If response type is defined, only TypedResponse is allowed.
+      R extends {
+        responses: {
+          [statusCode: number]: {
+            content: {
+              [mediaType: string]: ZodMediaTypeObject
+            }
+          }
+        }
+      }
+        ? MaybePromise<RouteConfigToTypedResponse<R>>
+        : MaybePromise<RouteConfigToTypedResponse<R>> | MaybePromise<Response>
+    >,
+    hook:
+      | Hook<
+          I,
+          E,
+          P,
+          R extends {
+            responses: {
+              [statusCode: number]: {
+                content: {
+                  [mediaType: string]: ZodMediaTypeObject
+                }
+              }
+            }
+          }
+            ? MaybePromise<RouteConfigToTypedResponse<R>> | undefined
+            : MaybePromise<RouteConfigToTypedResponse<R>> | MaybePromise<Response> | undefined
+        >
+      | undefined = this.defaultHook
+  ): OpenAPIHono<
+    E,
+    S & ToSchema<R['method'], MergePath<BasePath, P>, I, RouteConfigToTypedResponse<R>>,
+    BasePath
+  > => {
+    if (!webhook.hide) this.openAPIRegistry.registerWebhook(webhook as RouteConfigBase)
+
+    const { middleware: routeMiddleware, hide, ...route } = webhook
+    // mapping the route handler but not as a regular route
+    this.openAPIRegistry.registerPath({ ...route, hide: true })
+
+    const validators: MiddlewareHandler[] = []
+
+    if (webhook.request?.query) {
+      const validator = zValidator('query', route.request?.query as any, hook as any)
+      validators.push(validator as any)
     }
+
+    if (route.request?.params) {
+      const validator = zValidator('param', route.request.params as any, hook as any)
+      validators.push(validator as any)
+    }
+
+    if (route.request?.headers) {
+      const validator = zValidator('header', route.request.headers as any, hook as any)
+      validators.push(validator as any)
+    }
+
+    if (route.request?.cookies) {
+      const validator = zValidator('cookie', route.request.cookies as any, hook as any)
+      validators.push(validator as any)
+    }
+
+    const bodyContent = route.request?.body?.content
+
+    if (bodyContent) {
+      for (const mediaType of Object.keys(bodyContent)) {
+        if (!bodyContent[mediaType]) {
+          continue
+        }
+        const schema = (bodyContent[mediaType] as ZodMediaTypeObject)['schema']
+        if (!(schema instanceof ZodType)) {
+          continue
+        }
+        if (isJSONContentType(mediaType)) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore we can ignore the type error since Zod Validator's types are not used
+          const validator = zValidator('json', schema, hook)
+          if (route.request?.body?.required) {
+            validators.push(validator)
+          } else {
+            const mw: MiddlewareHandler = async (c, next) => {
+              if (c.req.header('content-type')) {
+                if (isJSONContentType(c.req.header('content-type')!)) {
+                  return await validator(c, next)
+                }
+              }
+              c.req.addValidatedData('json', {})
+              await next()
+            }
+            validators.push(mw)
+          }
+        }
+        if (isFormContentType(mediaType)) {
+          const validator = zValidator('form', schema, hook as any)
+          if (route.request?.body?.required) {
+            validators.push(validator)
+          } else {
+            const mw: MiddlewareHandler = async (c, next) => {
+              if (c.req.header('content-type')) {
+                if (isFormContentType(c.req.header('content-type')!)) {
+                  return await validator(c, next)
+                }
+              }
+              c.req.addValidatedData('form', {})
+              await next()
+            }
+            validators.push(mw)
+          }
+        }
+      }
+    }
+
+    const middleware = routeMiddleware
+      ? Array.isArray(routeMiddleware)
+        ? routeMiddleware
+        : [routeMiddleware]
+      : []
+
+    this.on(
+      [route.method],
+      route.path.replaceAll(/\/{(.+?)}/g, '/:$1'),
+      ...middleware,
+      ...validators,
+      handler
+    )
     return this
   }
 

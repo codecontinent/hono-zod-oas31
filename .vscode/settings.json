@@ -2,7 +2,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
+    "source.organizeImports": "explicit",
     "source.removeUnusedImports": "always"
   },
   "files.watcherExclude": {
