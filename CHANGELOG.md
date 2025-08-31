@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/codecontinent/hono-zod-oas31/compare/v2.0.0...v2.0.1) (2025-08-31)
+
+### Bug Fixes
+
+- **webhook:** resolved extra route path register ([b8bdace](https://github.com/codecontinent/hono-zod-oas31/commit/b8bdace1556e6b6bee8ab59504a7b09de04a94f3))
+
 # [2.0.0](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.4...v2.0.0) (2025-08-31)
 
 ### Features
