@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.4...v2.0.0) (2025-08-31)
+
+### Features
+
+- major v2 release ([04eb6ef](https://github.com/codecontinent/hono-zod-oas31/commit/04eb6efc6dcacca920982dd016fe1c37e28ada5e))
+
+### BREAKING CHANGES
+
+- This is a major release with breaking changes
+
 # [1.2.0](https://github.com/codecontinent/hono-zod-oas31/compare/v1.1.5...v1.2.0) (2025-08-31)
 
 ### Features
